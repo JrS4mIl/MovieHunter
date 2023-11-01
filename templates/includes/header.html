@@ -12,7 +12,7 @@
 <!-- homev206:52-->
 <head>
     <!-- Basic need -->
-    <title>Movie Hunter</title>
+    <title>{{site_title}}</title>
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta name="keywords" content="">
@@ -33,7 +33,7 @@
 <body>
 <!--preloading-->
 <div id="preloader">
-    <img class="logo" src="{% get_media_prefix %}images/logo1.png" alt="" width="119" height="58">
+
     <div id="status">
         <span></span>
         <span></span>
@@ -144,25 +144,21 @@
                         <span></span>
                     </div>
                 </div>
-                <a href="index-2.html"><img class="logo" src="{% get_media_prefix %}images/logo1.png" alt="" width="119"
-                                            height="58"></a>
+
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav flex-child-menu menu-left">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li class="dropdown first">
-                        <a class="btn btn-default dropdown-toggle lv1" href="{% url 'index' %}">
+                    <li class="dropdown first {% if request.path == '/' %}active{% endif %}">
+                        <a class="btn btn-default" href="{% url 'index' %}">
                             Home<i aria-hidden="true"></i>
                         </a>
-
                     </li>
-                    <li class="dropdown first">
-                        <a class="btn btn-default dropdown-toggle lv1" href="{% url 'movielist' %}">
+                    <li class="dropdown first {% if request.path == '/movies/' %}active{% endif %}">
+                        <a class="btn btn-default" href="{% url 'movielist' %}">
                             movies
                         </a>
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav flex-child-menu menu-right">
                     <li><a href="#">Help</a></li>
