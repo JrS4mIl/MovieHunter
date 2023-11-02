@@ -23,7 +23,7 @@ class Movie(models.Model):
     title = models.CharField(max_length=150)
     slug = models.SlugField(max_length=50, unique=True, null=True)
     description = models.TextField()
-    category = models.ManyToManyField(Category, related_name='film_category')
+    categories = models.ManyToManyField(Category, related_name='film_category')
     releasedate = models.DateField()
     director = models.CharField(max_length=100)
     image = models.ImageField(upload_to='movie_image')

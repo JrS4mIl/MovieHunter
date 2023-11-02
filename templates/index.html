@@ -11,9 +11,10 @@
                         <div class="col-md-8 col-sm-12 col-xs-12">
                             <div class="title-in">
                                 <div class="cate">
-                                    <span class="orange"><a href="#">advanture</a></span>
+                                    <span class="orange"><a href="#">{{header_movie.categories}}</a></span>
                                 </div>
-                                <h1><a href="#"><span>{{header_movie.releasedate}}</span></a></h1>
+
+                                <h1><a><span>{{header_movie.title}}</span></a></h1>
                                 <div class="social-btn">
                                     <a href="#" class="parent-btn"><i class="ion-heart"></i> Add to Favorite</a>
                                 </div>
@@ -24,8 +25,8 @@
                                     </ul>
                                 </div>
                                 <div class="btn-transform transform-vertical">
-                                    <div><a href="#" class="item item-1 redbtn">more detail</a></div>
-                                    <div><a href="#" class="item item-2 redbtn hvrbtn">more detail</a></div>
+                                    <div><a href="{% url 'detail' header_movie.slug %}" class="item item-1 redbtn">more detail</a></div>
+                                    <div><a href="{% url 'detail' header_movie.slug %}" class="item item-2 redbtn hvrbtn">more detail</a></div>
                                 </div>
                             </div>
                         </div>
