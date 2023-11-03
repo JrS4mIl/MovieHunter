@@ -11,7 +11,9 @@
                         <div class="col-md-8 col-sm-12 col-xs-12">
                             <div class="title-in">
                                 <div class="cate">
-                                    <span class="orange"><a href="#">{{header_movie.categories}}</a></span>
+                                    {% for category in header_movie.categories.all %}
+                                    <span class="orange"><a href="#">{{category.name}}</a></span>
+                                     {% endfor %}
                                 </div>
 
                                 <h1><a><span>{{header_movie.title}}</span></a></h1>
@@ -95,7 +97,7 @@
                     <div class="celeb-item">
 
 
-                        <a class="light">{{ct.name}}</a>
+                        <a class="light" href="{% url 'category_list' ct.slug  %}">{{ct.name}}</a>
 
 
                     </div>

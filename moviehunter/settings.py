@@ -36,6 +36,7 @@ ALLOWED_HOSTS = env('ALLOWED_HOSTS', cast=list)
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pages',
     'movies',
+
 
 ]
 

@@ -26,7 +26,8 @@
                 <div class="movie-item-style-2">
                     <img src="{{film.image.url}}" alt="">
                     <div class="mv-item-infor">
-                        <h6><a href="{% url 'detail' film.slug %}">{{film.title}} <span>({{film.releasedate}})</span></a></h6>
+                        <h6><a href="{% url 'detail' film.slug %}">{{film.title}}
+                            <span>({{film.releasedate}})</span></a></h6>
                         <p class="rate"><i class="ion-android-star"></i><span>{{film.puan}}</span> /10</p>
                         <p class="describe">{{film.description|slice:":150"}}..</p>
                         <p class="run-time"> Run Time: {{film.hours}}
@@ -57,13 +58,18 @@
 
             </div>
             <div class="col-md-4 col-sm-12 col-xs-12">
-                <div class="sidebar">
+                {% for cat in category %}
+
+                <h2 style="color: white; background-color: #020D18; padding: 10px;">
+                    <a href="{% url 'category_list' cat.slug  %}" style="color: white; text-decoration: none;">{{cat.name}}</a>
+                </h2>
+                <br>
+                {% endfor %}
 
 
-
-                </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 {% endblock %}
