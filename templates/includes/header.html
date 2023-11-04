@@ -75,9 +75,21 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav  menu-right">
-                   <li class=""><a href="{% url 'login'%}">LOG In</a></li>
+                    {% if user.is_authenticated %}
+                    <li class=""><a href="{% url 'dashboard' %}">Welcome {{user.username}}</a></li>
+                    <li><a class="hover-btn-new log orange" href="javascript:{document.getElementById('logout').submit()}">LogOut</a>
+                        <form action="{% url 'logout' %}" method="POST" id="logout">
+                            {% csrf_token %}
+                            <input type="hidden">
 
+                        </form>
+                    </li>
+
+
+                    {% else %}
+                    <li class=""><a href="{% url 'login'%}">LOG In</a></li>
                     <li class=""><a href="{% url 'register' %}">sign up</a></li>
+                    {% endif %}
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

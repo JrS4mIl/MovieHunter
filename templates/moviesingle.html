@@ -31,12 +31,18 @@
                 <div class="movie-single-ct main-content">
                     <h1 class="bd-hd">{{movie.title}}<span> {{movie.releasedate}}</span></h1>
                     <div class="social-btn">
-                        <a href="#" class="parent-btn"><i class="ion-heart"></i> Add to Favorite</a>
-                        <div class="hover-bnt">
-                            <a href="#" class="parent-btn"><i class="ion-android-share-alt"></i>share</a>
+                        {% if user.is_authenticated %}
+                        <form action="{% url 'favorite_film' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="user_id" value="{{user.id}}">
+                            <input type="hidden" name="movie_id" value="{{movie.id}}">
+                            <button type="submit"><a class="parent-btn"><i class="ion-heart"></i> Add to Favorite</a></button>
+                        </form>
 
-                        </div>
+                        {% endif %}
                     </div>
+
+
                     <div class="movie-rate">
                         <div class="rate">
                             <i class="ion-android-star"></i>

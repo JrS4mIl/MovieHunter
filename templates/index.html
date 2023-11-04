@@ -13,12 +13,11 @@
                                 <div class="cate">
                                     {% for category in header_movie.categories.all %}
                                     <span class="orange"><a href="#">{{category.name}}</a></span>
-                                     {% endfor %}
+                                    {% endfor %}
                                 </div>
 
                                 <h1><a><span>{{header_movie.title}}</span></a></h1>
                                 <div class="social-btn">
-                                    <a href="#" class="parent-btn"><i class="ion-heart"></i> Add to Favorite</a>
                                 </div>
                                 <div class="mv-details">
 
@@ -27,8 +26,10 @@
                                     </ul>
                                 </div>
                                 <div class="btn-transform transform-vertical">
-                                    <div><a href="{% url 'detail' header_movie.slug %}" class="item item-1 redbtn">more detail</a></div>
-                                    <div><a href="{% url 'detail' header_movie.slug %}" class="item item-2 redbtn hvrbtn">more detail</a></div>
+                                    <div><a href="{% url 'detail' header_movie.slug %}" class="item item-1 redbtn">more
+                                        detail</a></div>
+                                    <div><a href="{% url 'detail' header_movie.slug %}"
+                                            class="item item-2 redbtn hvrbtn">more detail</a></div>
                                 </div>
                             </div>
                         </div>
@@ -44,7 +45,6 @@
         </div>
     </div>
 </div>
-
 
 
 <div class="trailers full-width">

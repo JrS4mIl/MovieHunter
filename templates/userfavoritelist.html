@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+<div class="hero user-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1>{{user.username}}</h1>
+                    <ul class="breadcumb">
+                        <li class="active"><a href="{% url 'index' %}">Home</a></li>
+                        <li><span class="ion-ios-arrow-right"></span>Favorite movies</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-single userfav_list">
+    <div class="container">
+        <div class="row ipad-width2">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="user-information">
+                    <div class="user-fav">
+                        <p>Account Details</p>
+                        <ul>
+                            <li><a href="{% url 'dashboard' %}">Profile</a></li>
+                            <li class="active"><a href="{% url 'favorite_list' %}">Favorite movies</a></li>
+                        </ul>
+                    </div>
+                    <div class="user-fav">
+                        <ul>
+                            <li><a href="{% url 'logout' %}">Log out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-12 col-xs-12">
+
+                <div class="flex-wrap-movielist user-fav-list">
+                    {% for movie in movies %}
+                    <div class="movie-item-style-2">
+                        <img src="{{movie.image.url}}" alt="">
+                        <div class="mv-item-infor">
+                            <h6><a href="{% url 'detail' movie.slug %}">{{movie.title}} <span>({{movie.releasedate}})</span></a></h6>
+                            <p class="rate"><i class="ion-android-star"></i><span>{{movie.puan}}</span> /10</p>
+                            <p class="describe">{{movie.description|slice:":150"}}...</p>
+                            <p class="run-time"> Run Time: {{movie.hours}}’
+                            <p>Director: <a href="#">{{movie.director}}</a></p>
+
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

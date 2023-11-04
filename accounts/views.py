@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from .forms import LoginForm, RegisterForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from movies.models import Movie
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -27,5 +30,48 @@ def login_user(request):
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
 
+
 def register(request):
-    return render(request,'register.html')
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Basariyla kayit oldunuz,Giris yapabilirsiniz')
+            return redirect('login')
+    else:
+        form = RegisterForm()
+    return render(request, 'register.html', {'form': form})
+
+
+def user_logout(request):
+    logout(request)
+    return redirect('index')
+
+
+@login_required(login_url='login')
+def user_dashboard(request):
+    current_user = request.user
+    movies = current_user.favorite_film.all()
+    context = {
+        'movies': movies,
+    }
+    return render(request, 'userprofile.html', context)
+
+
+def favorite_film(request):
+    movie_id = request.POST['movie_id']
+    user_id = request.POST['user_id']
+    movie = Movie.objects.get(id=movie_id)
+    user = User.objects.get(id=user_id)
+    movie.kullanici.add(user)
+    return redirect('favorite_list')
+
+
+@login_required(login_url='login')
+def favorite_list(request):
+    current_user = request.user
+    movies = current_user.favorite_film.all()
+    context = {
+        'movies': movies,
+    }
+    return render(request, 'userfavoritelist.html', context)

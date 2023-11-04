@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
-
+from django.contrib.auth.models import User
 
 # Create your models here
 #
@@ -24,6 +24,7 @@ class Movie(models.Model):
     slug = models.SlugField(max_length=50, unique=True, null=True)
     description = models.TextField()
     categories = models.ManyToManyField(Category, related_name='film_category')
+    kullanici=models.ManyToManyField(User,blank=True,related_name='favorite_film')
     releasedate = models.DateField()
     director = models.CharField(max_length=100)
     image = models.ImageField(upload_to='movie_image')
