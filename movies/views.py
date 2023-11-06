@@ -23,8 +23,15 @@ class MovieList(ListView):
 
 def detail_movie(request, slug):
     movie = Movie.objects.get(slug=slug)
+    movies = Movie.objects.all()
+    current_user = request.user
+    if current_user.is_authenticated:
+        fav_movies = current_user.favorite_film.all()
+    else:
+        fav_movies = movies
     context = {
         'movie': movie,
+        'fav_movies': fav_movies,
     }
     return render(request, 'moviesingle.html', context)
 

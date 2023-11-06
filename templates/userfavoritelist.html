@@ -3,8 +3,18 @@
 
 {% block content %}
 <div class="hero user-hero">
+
     <div class="container">
         <div class="row">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{message.tags}}">
+
+                {{message}}
+            </div>
+            {% endfor %}
+
+            {% endif %}
             <div class="col-md-12">
                 <div class="hero-ct">
                     <h1>{{user.username}}</h1>
@@ -43,7 +53,8 @@
                     <div class="movie-item-style-2">
                         <img src="{{movie.image.url}}" alt="">
                         <div class="mv-item-infor">
-                            <h6><a href="{% url 'detail' movie.slug %}">{{movie.title}} <span>({{movie.releasedate}})</span></a></h6>
+                            <h6><a href="{% url 'detail' movie.slug %}">{{movie.title}}
+                                <span>({{movie.releasedate}})</span></a></h6>
                             <p class="rate"><i class="ion-android-star"></i><span>{{movie.puan}}</span> /10</p>
                             <p class="describe">{{movie.description|slice:":150"}}...</p>
                             <p class="run-time"> Run Time: {{movie.hours}}’

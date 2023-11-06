@@ -30,17 +30,31 @@
             <div class="col-md-8 col-sm-12 col-xs-12">
                 <div class="movie-single-ct main-content">
                     <h1 class="bd-hd">{{movie.title}}<span> {{movie.releasedate}}</span></h1>
-                    <div class="social-btn">
-                        {% if user.is_authenticated %}
-                        <form action="{% url 'favorite_film' %}" method="POST">
-                            {% csrf_token %}
-                            <input type="hidden" name="user_id" value="{{user.id}}">
-                            <input type="hidden" name="movie_id" value="{{movie.id}}">
-                            <button type="submit"><a class="parent-btn"><i class="ion-heart"></i> Add to Favorite</a></button>
-                        </form>
+                    {% if user.is_authenticated %}
+                        {% if movie in fav_movies %}
+                        <div class="social-btn">
+                            <form action="{% url 'favorite_film_delete' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="user_id" value="{{user.id}}">
+                                <input type="hidden" name="movie_id" value="{{movie.id}}">
+                                <button type="submit"><a class="parent-btn"><i class="ion-heart"></i> Favoriden Sil</a>
+                                </button>
+                            </form>
+                        </div>
+                    {% else %}
+                            <div class="social-btn">
+                                <form action="{% url 'favorite_film' %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="user_id" value="{{user.id}}">
+                                    <input type="hidden" name="movie_id" value="{{movie.id}}">
+                                    <button type="submit"><a class="parent-btn"><i class="ion-heart"></i> Add to Favorite</a>
+                                    </button>
+                                </form>
 
+
+                        </div>
                         {% endif %}
-                    </div>
+                    {% endif %}
 
 
                     <div class="movie-rate">

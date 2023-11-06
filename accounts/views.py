@@ -64,6 +64,15 @@ def favorite_film(request):
     movie = Movie.objects.get(id=movie_id)
     user = User.objects.get(id=user_id)
     movie.kullanici.add(user)
+    messages.success(request, 'Favorinize Eklendiniz')
+    return redirect('favorite_list')
+
+
+def favorite_film_delete(request):
+    movie = Movie.objects.get(id=request.POST['movie_id'])
+    user = User.objects.get(id=request.POST['user_id'])
+    movie.kullanici.remove(user)
+    messages.warning(request, 'Favoriden Sildiniz !!!!!!')
     return redirect('favorite_list')
 
 
