@@ -49,3 +49,8 @@ class IndexMovie(models.Model):
 
     def __str__(self):
         return self.name
+class Comment(models.Model):
+    movie=models.ForeignKey(Movie,on_delete=models.CASCADE,related_name='comments')
+    comment_author=models.CharField(max_length=50,verbose_name='isim')
+    comment_content=models.CharField(max_length=200,verbose_name='yorum')
+    comment_date=models.DateTimeField(auto_now_add=True)

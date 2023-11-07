@@ -1,8 +1,14 @@
 from django.contrib import admin
-from .models import Category, Movie, IndexMovie
+from .models import Category, Movie, IndexMovie, Comment
 
 
 # Register your models here.
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['movie','comment_author','comment_date']
+
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
@@ -21,4 +27,3 @@ class MovieAdmin(admin.ModelAdmin):
 class IndexMovieAdmin(admin.ModelAdmin):
     list_display = ['name', 'sure', 'youtube_link']
     search_fields = ['name']
-
