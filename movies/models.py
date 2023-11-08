@@ -32,6 +32,7 @@ class Movie(models.Model):
     puan = models.DecimalField(max_digits=3, decimal_places=2, default=0.0)
     creation_date = models.DateTimeField(auto_now_add=True)  # Oluşturulma tarihi
     update_date = models.DateTimeField(auto_now=True)
+    youtube_link = models.URLField(blank=True)
 
     def __str__(self):
         return self.title
