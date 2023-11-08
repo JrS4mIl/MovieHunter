@@ -23,7 +23,6 @@ class MovieList(ListView):
 
 
 def detail_movie(request, slug):
-
     movie = Movie.objects.get(slug=slug)
     movies = Movie.objects.all()
     comments=movie.comments.all()
