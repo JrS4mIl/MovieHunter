@@ -150,7 +150,9 @@ else:
     }
     STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/static/'
     STATIC_ROOT = STATIC_URL
+
     MEDIA_LOCATION = 'media'
+    IMAGE_SETTING_LOCATION = MEDIA_LOCATION + '/image_settings'
 
 
 # Default primary key field type

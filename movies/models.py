@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.contrib.auth.models import User
-
+from moviehunter.custom_storages import ImageSettingStorage,MediaStorage
 # Create your models here
 #
 
@@ -27,7 +27,7 @@ class Movie(models.Model):
     kullanici=models.ManyToManyField(User,blank=True,related_name='favorite_film')
     releasedate = models.DateField()
     director = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='movie_image')
+    image = models.ImageField(storage=ImageSettingStorage)
     hours = models.DurationField()
     puan = models.DecimalField(max_digits=3, decimal_places=2, default=0.0)
     creation_date = models.DateTimeField(auto_now_add=True)  # Oluşturulma tarihi
@@ -44,7 +44,7 @@ class Movie(models.Model):
 
 class IndexMovie(models.Model):
     youtube_link = models.URLField()
-    image = models.ImageField(upload_to='movie_image')
+    image = models.ImageField(storage=ImageSettingStorage)
     name = models.CharField(max_length=50)
     sure = models.FloatField()
 
