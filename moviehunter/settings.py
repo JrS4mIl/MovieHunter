@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = env('DEBUG')
 
 SECRET_KEY = env('SECRET_KEY')
-CSRF_TRUSTED_ORIGINS = env('CSRF_TRUSTED_ORIGINS', cast=list)
+CSRF_TRUSTED_ORIGINS = ['https://moivehunter.com.tr','https://www.moivehunter.com.tr']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
